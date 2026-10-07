@@ -1,0 +1,165 @@
+/* ==========================================================================
+   CapLink — motion
+   Subtle by design. Everything here is disabled for prefers-reduced-motion.
+   ========================================================================== */
+
+/* ---------- Scroll reveal ----------
+   Elements are only hidden when JS has loaded (html.js), so content is
+   always visible without JavaScript. */
+.js [data-reveal] {
+  opacity: 0;
+  translate: 0 28px;
+  transition: opacity 0.9s var(--ease), translate 0.9s var(--ease), scale 0.9s var(--ease), transform 0.4s var(--ease), border-color 0.4s, box-shadow 0.4s;
+  transition-delay: var(--reveal-delay, 0s), var(--reveal-delay, 0s), var(--reveal-delay, 0s), 0s, 0s, 0s;
+}
+
+.js [data-reveal="fade"] {
+  translate: none;
+}
+
+.js [data-reveal="scale"] {
+  translate: none;
+  scale: 0.96;
+}
+
+.js [data-reveal].is-visible {
+  opacity: 1;
+  translate: none;
+  scale: none;
+}
+
+/* ---------- Floating phones ---------- */
+@keyframes float-main {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+@keyframes float-left {
+  0%, 100% { transform: rotate(-7deg) translateY(0); }
+  50% { transform: rotate(-6deg) translateY(-10px); }
+}
+
+@keyframes float-right {
+  0%, 100% { transform: rotate(7deg) translateY(0); }
+  50% { transform: rotate(6deg) translateY(-10px); }
+}
+
+@keyframes float-chip {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.shot--main { animation: float-main 7s ease-in-out infinite; }
+.shot--left { animation: float-left 8s ease-in-out infinite 0.6s; }
+.shot--right { animation: float-right 8.5s ease-in-out infinite 1.2s; }
+.float-chip--a { animation: float-chip 6s ease-in-out infinite 0.3s; }
+.float-chip--b { animation: float-chip 6.5s ease-in-out infinite 1.4s; }
+
+.float-soft {
+  animation: float-main 8s ease-in-out infinite;
+}
+
+/* ---------- Glow pulse behind hero ---------- */
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.85; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+.hero__visual::before,
+.page-hero__media::before {
+  animation: glow-pulse 9s ease-in-out infinite;
+}
+
+/* ---------- Gradient text shimmer (very slow) ---------- */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.gradient-text--animated {
+  background-size: 200% 100%;
+  animation: gradient-shift 10s ease-in-out infinite;
+}
+
+/* ---------- Border glow on CTA panel ---------- */
+@keyframes border-glow {
+  0%, 100% { box-shadow: 0 40px 100px -40px rgba(108, 77, 255, 0.7); }
+  50% { box-shadow: 0 40px 110px -36px rgba(0, 217, 192, 0.55); }
+}
+
+.cta-panel {
+  animation: border-glow 8s ease-in-out infinite;
+}
+
+/* ---------- Flow connectors: marching dashes ---------- */
+@keyframes dash-x {
+  to { background-position: 24px 0; }
+}
+
+@keyframes dash-y {
+  to { background-position: 0 24px; }
+}
+
+.flow__step:not(:last-child)::after {
+  animation: dash-x 1.2s linear infinite;
+}
+
+@media (max-width: 1024px) {
+  .flow__step:not(:last-child)::after {
+    animation-name: dash-y;
+  }
+}
+
+@keyframes arrow-nudge {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.flow__step:not(:last-child)::before {
+  animation: arrow-nudge 2.4s ease-in-out infinite;
+}
+
+/* ---------- Score ring + bars fill on reveal ---------- */
+.js .ring__value {
+  stroke-dashoffset: 326.73;
+  transition: stroke-dashoffset 1.8s var(--ease) 0.2s;
+}
+
+.js .is-visible .ring__value {
+  stroke-dashoffset: var(--ring-offset, 101.3);
+}
+
+.js .bar__fill {
+  width: 0;
+  transition: width 1.4s var(--ease);
+  transition-delay: calc(0.3s + var(--i, 0) * 0.08s);
+}
+
+.js .is-visible .bar__fill {
+  width: var(--w, 0%);
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0s !important;
+  }
+
+  .js [data-reveal] {
+    opacity: 1;
+    translate: none;
+    scale: none;
+  }
+
+  .shot--left { transform: rotate(-7deg); }
+  .shot--right { transform: rotate(7deg); }
+}
