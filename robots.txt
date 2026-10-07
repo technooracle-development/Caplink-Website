@@ -1,0 +1,6 @@
+# CapLink — robots.txt
+# All public pages, CSS, JS and images may be crawled.
+User-agent: *
+Allow: /
+
+Sitemap: https://YOUR_PRODUCTION_URL_HERE/sitemap.xml

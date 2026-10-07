@@ -10,6 +10,12 @@
    see README.md ("Updating configuration") if you change them.
    ========================================================================== */
 window.CAPLINK_CONFIG = Object.freeze({
+  // Production URL (no trailing slash). The canonical/OG/sitemap URLs in the
+  // static HTML use the same placeholder — run scripts/set-site-url.sh to replace
+  // it everywhere. Shown here for reference; SEO tags never depend on JavaScript.
+  SITE_URL: "https://YOUR_PRODUCTION_URL_HERE",
+  DEFAULT_OG_IMAGE: "assets/seo/caplink-og-image.png",
+
   APP_NAME: "CapLink",
   TAGLINE: "Smart financial decisions",
   COMPANY_NAME: "TechnoOracle",

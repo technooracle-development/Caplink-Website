@@ -163,3 +163,10 @@
   .shot--left { transform: rotate(-7deg); }
   .shot--right { transform: rotate(7deg); }
 }
+
+/* Above-the-fold content stays fully opaque so it can paint immediately
+   (protects LCP); it only gets a gentle slide/scale on load. */
+.js .hero [data-reveal],
+.js .page-hero [data-reveal] {
+  opacity: 1;
+}

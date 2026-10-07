@@ -540,3 +540,29 @@
     align-items: flex-start;
   }
 }
+
+/* ---------- SEO additions ---------- */
+@media (max-width: 860px) {
+  .page-hero__grid .breadcrumbs ol,
+  .page-hero--center .breadcrumbs ol {
+    justify-content: center;
+  }
+
+  .hub-links {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .explainer {
+    grid-template-columns: 1fr;
+  }
+
+  .faq__item summary {
+    padding: 16px 18px;
+  }
+
+  .faq__answer {
+    padding: 0 18px 18px;
+  }
+}

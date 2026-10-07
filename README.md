@@ -5,6 +5,8 @@ The public marketing and legal website for **CapLink — Smart financial decisio
 Plain HTML5 + CSS3 + vanilla JavaScript. No framework, no build step, no backend. Deploy the folder as-is to any static host (Netlify, Vercel static, GitHub Pages, Cloudflare Pages, Firebase Hosting, S3, etc.).
 
 > **Internal note:** Legal pages should be reviewed by qualified legal counsel before production publication.
+>
+> **SEO:** see [SEO-AUDIT.md](SEO-AUDIT.md) for the full SEO setup, placeholders and Google Search Console steps.
 
 ---
 
@@ -24,6 +26,11 @@ caplink-website/
 ├── terms.html              Terms of Use
 ├── disclaimer.html         Financial Disclaimer
 ├── delete-account.html     Account deletion instructions (Play Store requirement)
+├── 404.html                Not-found page (noindex)
+├── robots.txt / sitemap.xml
+├── favicon.ico, site.webmanifest, .nojekyll
+├── scripts/set-site-url.sh Replaces the SITE_URL placeholder everywhere
+├── SEO-AUDIT.md            SEO report + Search Console steps
 ├── css/
 │   ├── styles.css          Design tokens, layout, components
 │   ├── animations.css      Scroll reveal, floating phones, glow (honours prefers-reduced-motion)
@@ -35,10 +42,10 @@ caplink-website/
 │   └── main.js             Applies config, store-link placeholders, calculator filter
 └── assets/
     ├── logo/               caplink-mark.svg, caplink-logo.svg
-    ├── screenshots/        App screenshots (WebP 480w + 940w, JPG fallback)
+    ├── screenshots/        App screenshots, caplink-*.webp (480w + 940w) + JPG fallback
+    ├── seo/                caplink-og-image.png (1200×630 social preview)
     ├── illustrations/      (empty — drop 3D illustrations here if you add them)
     ├── icons/              favicon-32.png, apple-touch-icon.png
-    ├── backgrounds/        og-image.jpg (1200×630 social preview)
     └── fonts/              Self-hosted Poppins (400/500/700, Latin + ₹ subset)
 ```
 
@@ -73,12 +80,13 @@ grep -rl "technooracleinfo@gmail.com" --include=*.html . | xargs sed -i '' 's/te
 
 While `GOOGLE_PLAY_URL` is `"#"`, the **Download on Google Play** button stays on the page and shows a short "link coming soon" note when clicked instead of navigating. Set the real URL in `config.js` and the button opens the listing in a new tab. "Coming soon on iOS" is a non-interactive badge; turn it into a link when the iOS app ships.
 
-### Domain placeholders (do before launch)
+### Production URL (do before launch)
 
-Canonical and Open Graph URLs use `https://YOUR-DOMAIN.com`. Replace it in every HTML file once the domain is known:
+Canonical, Open Graph, JSON-LD, `sitemap.xml` and `robots.txt` use the placeholder `https://YOUR_PRODUCTION_URL_HERE`. Replace it everywhere with one command:
 
 ```bash
-grep -rl "YOUR-DOMAIN.com" --include=*.html . | xargs sed -i '' 's#https://YOUR-DOMAIN.com#https://caplink.example#g'   # macOS
+./scripts/set-site-url.sh https://your-real-url        # no trailing slash
+# e.g. ./scripts/set-site-url.sh https://technooracle-development.github.io/Caplink-Website
 ```
 
 ---
