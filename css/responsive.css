@@ -477,3 +477,66 @@
     display: none;
   }
 }
+
+/* ---------- Delete Account page ---------- */
+@media (max-width: 1024px) {
+  .step-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  .del-trust {
+    margin-inline: auto;
+    text-align: left;
+  }
+
+  .del-visual {
+    min-height: 280px;
+  }
+}
+
+@media (max-width: 640px) {
+  .step-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .del-visual {
+    min-height: 240px;
+  }
+
+  .del-visual__tile {
+    width: 140px;
+    height: 140px;
+    border-radius: 36px;
+  }
+
+  .del-visual__mark {
+    width: 80px;
+    height: 80px;
+  }
+
+  .del-visual__chip {
+    font-size: 0.74rem;
+    padding: 7px 11px;
+  }
+
+  .del-visual__chip--a { left: 0; }
+  .del-visual__chip--b { right: 0; }
+  .del-visual__chip--c { left: 6%; }
+
+  .del-help {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .del-help .btn,
+  .contact-card .btn {
+    width: 100%;
+    white-space: normal;
+  }
+
+  .del-notreq__head {
+    align-items: flex-start;
+  }
+}

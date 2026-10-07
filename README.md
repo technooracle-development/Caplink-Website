@@ -87,7 +87,7 @@ grep -rl "YOUR-DOMAIN.com" --include=*.html . | xargs sed -i '' 's#https://YOUR-
 
 These are written carefully, but please check them against the current app build:
 
-1. **Delete Account steps** (`delete-account.html`) — Profile → Settings / Account → Delete Account → Confirm. A visible note says menu names may vary; edit the five steps if the app differs (look for the `CONFIGURABLE` comment).
+1. **Delete Account page** (`delete-account.html`) — this is the public URL to give Google Play Console as the account-deletion link. Steps: Open CapLink → Profile → account/settings section → Delete Account → confirm. Step 3 is worded generically because the exact menu label wasn't verified; edit steps 02–03 if needed (look for the `CONFIGURABLE` comment). Email fallback uses subject "CapLink Account Deletion Request".
 2. **Saved Calculations** (`features.html` #06) uses an illustrative mini-UI with the caption "Illustration — actual app layout may differ". Swap in a real screenshot when available.
 3. **Privacy Policy service providers** — the policy names only Supabase and mentions AI/analytics/hosting providers "where applicable". If you add analytics (e.g. Firebase, Mixpanel) or name your AI provider, update sections 3, 8 and 10.
 4. **Children's privacy** — no minimum age is stated. Add one once your app policy / Play Console target audience is settled.
